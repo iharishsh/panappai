@@ -1,16 +1,17 @@
 import { useState } from "react";
-import "./App.css";
 import { generateMnemonic } from "bip39";
 import { SolanaWallet } from "./components/SolanaWallet";
 import { EthWallet } from "./components/EthWallet";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
+import { Header } from "./components/Header";
 
 function App() {
   const [mnemonic, setMnemonic] = useState("");
 
   return (
     <>
+      <Header />
       <Input
         type="text"
         value={mnemonic}
