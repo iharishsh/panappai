@@ -3,6 +3,7 @@ import { mnemonicToSeed } from "bip39";
 import { derivePath } from "ed25519-hd-key";
 import React, { useState } from "react";
 import nacl from "tweetnacl";
+import { Button } from "./ui/button";
 
 export const SolanaWallet = ({ mnemonic }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -10,7 +11,7 @@ export const SolanaWallet = ({ mnemonic }) => {
 
   return (
     <div>
-      <button
+      <Button
         onClick={function () {
           const seed = mnemonicToSeed(mnemonic);
           const path = `m/44'/501'/${currentIndex}'/0'`;
@@ -22,7 +23,7 @@ export const SolanaWallet = ({ mnemonic }) => {
         }}
       >
         Add SOL Wallet
-      </button>
+      </Button>
       {publicKeys.map((p, index) => (
         <div key={index}>{p.toBase58()}</div>
       ))}
