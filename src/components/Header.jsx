@@ -1,6 +1,7 @@
 import { Moon, Sun, WalletMinimal } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Switch } from "./ui/switch";
+import { Badge } from "./ui/badge";
 
 export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(
@@ -21,6 +22,7 @@ export const Header = () => {
       <div className="flex gap-3 text-xl font-semibold items-center justify-center rounded-md p-2">
         <WalletMinimal />
         Panappai
+        <Badge variant="outline" className={'font-extrabold'}>v1</Badge>
       </div>
       <div className="flex gap-3 items-center">
         <Sun className={isDarkMode ? "text-gray-500" : "text-yellow-500"} />

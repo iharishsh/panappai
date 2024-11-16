@@ -5,6 +5,7 @@ import { EthWallet } from "./components/EthWallet";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
 import { Header } from "./components/Header";
+import { LoginPassword } from "./components/LoginPassword";
 
 function App() {
   const [mnemonic, setMnemonic] = useState("");
@@ -12,6 +13,7 @@ function App() {
   return (
     <>
       <Header />
+      <LoginPassword />
       <Input
         type="text"
         value={mnemonic}
