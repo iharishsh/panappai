@@ -6,6 +6,7 @@ import { SeedPhrase } from "./components/SeedPhrase";
 import { SolanaWallet } from "./components/SolanaWallet";
 import { EthWallet } from "./components/EthWallet";
 import { Footer } from "./components/Footer";
+import { Toaster } from "./components/ui/sonner";
 
 function App() {
   const { isLoggedIn, mnemonic, loadFromLocalStorage } = useAuthStore();
@@ -31,8 +32,9 @@ function App() {
 
   return (
     <div className="flex flex-col h-screen">
+      <Toaster />
       <Header />
-      <main className="flex-1 flex flex-col items-center justify-center">
+      <main className="flex-1 flex flex-col items-center justify-center mt-20 mb-20">
         {Content}
       </main>
       <Footer />

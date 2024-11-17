@@ -3,6 +3,7 @@ import { generateMnemonic } from "bip39";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useAuthStore } from "../store/useAuthStore";
+import { toast } from "sonner";
 
 export const SeedPhrase = () => {
   const [mnemonic, setMnemonic] = useState("");
@@ -20,9 +21,9 @@ export const SeedPhrase = () => {
   const handleCopySeedPhrase = () => {
     if (navigator?.clipboard?.writeText) {
       navigator.clipboard.writeText(mnemonic);
-      alert("Seed phrase copied to clipboard!");
+      toast("Seed phrase copied to clipboard!");
     } else {
-      alert("Clipboard functionality is not available in your environment.");
+      toast("Clipboard is not available in your environment.");
     }
   };
 

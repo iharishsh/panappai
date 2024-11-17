@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 export const LoginPassword = () => {
   const {
@@ -17,32 +18,32 @@ export const LoginPassword = () => {
 
   const handleLogin = () => {
     if (password === storedPassword) {
-      alert("Logged in successfully!");
+      toast("Logged in successfully!");
     } else {
-      alert("Invalid password!");
+      toast("Invalid password!");
     }
   };
 
   const handlePasswordCreation = () => {
     if (password) {
       setPasswordAndMnemonic(password, storedMnemonic);
-      alert("Password saved successfully!");
+      toast("Password saved successfully!");
     } else {
-      alert("Enter the Password");
+      toast("Enter the Password");
     }
   };
 
   const handlePasswordReset = () => {
     if (!password) {
-      alert("Enter a new password.");
+      toast("Enter a new password.");
       return;
     }
     
     if (mnemonic.join(" ") === storedMnemonic) {
       resetPassword(password);
-      alert("Password reset successfully!");
+      toast("Password reset successfully!");
     } else {
-      alert("Mnemonic does not match!");
+      toast("Mnemonic does not match!");
     }
   };
   
