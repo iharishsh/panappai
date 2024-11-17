@@ -1,35 +1,40 @@
-import { useState } from "react";
-import { generateMnemonic } from "bip39";
-import { SolanaWallet } from "./components/SolanaWallet";
-import { EthWallet } from "./components/EthWallet";
-import { Button } from "./components/ui/button";
-import { Input } from "./components/ui/input";
+import React, { useEffect } from "react";
+import { useAuthStore } from "./store/useAuthStore";
 import { Header } from "./components/Header";
 import { LoginPassword } from "./components/LoginPassword";
+import { SeedPhrase } from "./components/SeedPhrase";
+import { SolanaWallet } from "./components/SolanaWallet";
+import { EthWallet } from "./components/EthWallet";
 
 function App() {
-  const [mnemonic, setMnemonic] = useState("");
+  const { isLoggedIn, mnemonic, loadFromLocalStorage } = useAuthStore();
+
+  useEffect(() => {
+    loadFromLocalStorage();
+  }, [loadFromLocalStorage]);
+
+  let Content;
+
+  if (!isLoggedIn) {
+    Content = <LoginPassword />;
+  } else if (!mnemonic) {
+    Content = <SeedPhrase />;
+  } else {
+    Content = (
+      <>
+        <SolanaWallet />
+        <EthWallet />
+      </>
+    );
+  }
 
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Header />
-      <LoginPassword />
-      <Input
-        type="text"
-        value={mnemonic}
-        onChange={(e) => setMnemonic(e.target.value)}
-      />
-      <Button
-        onClick={async function () {
-          const mn = await generateMnemonic();
-          setMnemonic(mn);
-        }}
-      >
-        Create Seed Phrase
-      </Button>
-      <SolanaWallet mnemonic={mnemonic} />
-      <EthWallet mnemonic={mnemonic} />
-    </>
+      <main className="flex-1 flex flex-col items-center justify-center">
+        {Content}
+      </main>
+    </div>
   );
 }
 
