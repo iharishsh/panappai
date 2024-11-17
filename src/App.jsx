@@ -5,6 +5,7 @@ import { LoginPassword } from "./components/LoginPassword";
 import { SeedPhrase } from "./components/SeedPhrase";
 import { SolanaWallet } from "./components/SolanaWallet";
 import { EthWallet } from "./components/EthWallet";
+import { Footer } from "./components/Footer";
 
 function App() {
   const { isLoggedIn, mnemonic, loadFromLocalStorage } = useAuthStore();
@@ -34,6 +35,7 @@ function App() {
       <main className="flex-1 flex flex-col items-center justify-center">
         {Content}
       </main>
+      <Footer />
     </div>
   );
 }
