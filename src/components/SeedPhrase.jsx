@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useAuthStore } from "../store/useAuthStore";
 import { toast } from "sonner";
+import { Copy } from "lucide-react";
 
 export const SeedPhrase = () => {
   const [mnemonic, setMnemonic] = useState("");
@@ -21,7 +22,7 @@ export const SeedPhrase = () => {
   const handleCopySeedPhrase = () => {
     if (navigator?.clipboard?.writeText) {
       navigator.clipboard.writeText(mnemonic);
-      toast("Seed phrase copied to clipboard!");
+      toast("Copied to clipboard!");
     } else {
       toast("Clipboard is not available in your environment.");
     }
@@ -32,17 +33,22 @@ export const SeedPhrase = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-4">
+    <div className="flex flex-col items-center justify-center  gap-4">
       {!isSeedGenerated ? (
         <Button onClick={handleGenerateSeedPhrase}>Create Seed Phrase</Button>
       ) : (
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4" onClick={handleCopySeedPhrase}>
+          <h2>Your Secret Phrase</h2>
           <div className="grid grid-cols-3 gap-2">
             {seedWords.map((word, index) => (
-              <Input key={index} type="text" value={word} readOnly className="text-center" />
+              <Input key={index} type="text" value={word} readOnly className="text-center cursor-pointer" />
             ))}
           </div>
-          <Button onClick={handleCopySeedPhrase}>Copy Seed Phrase</Button>
+          <div onClick={handleCopySeedPhrase} className="flex gap-3 items-center justify-start cursor-pointer text-sm p-5">
+          <Copy size={20} />
+          Click Anywhere To Copy
+          </div>
+
           <Button onClick={handleContinue}>Continue</Button>
         </div>
       )}

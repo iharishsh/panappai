@@ -33,19 +33,24 @@ export const LoginPassword = () => {
     }
   };
 
-  const handlePasswordReset = () => {
-    if (!password) {
-      toast("Enter a new password.");
-      return;
-    }
-    
-    if (mnemonic.join(" ") === storedMnemonic) {
-      resetPassword(password);
-      toast("Password reset successfully!");
-    } else {
-      toast("Mnemonic does not match!");
-    }
-  };
+const handlePasswordReset = () => {
+  if (!password) {
+    toast("Enter a new password.");
+    return;
+  }
+
+  if (mnemonic.join(" ") === storedMnemonic) {
+    resetPassword(password);
+    toast("Password reset successfully!");
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000); // 1-second delay
+  } else {
+    toast("Mnemonic does not match!");
+  }
+};
+
   
 
   const handleMnemonicChange = (value, index) => {
@@ -71,7 +76,7 @@ export const LoginPassword = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleLogin}>Login</Button>
+          <Button onClick={handleLogin} className='w-full' >Login</Button>
           <Button onClick={() => setIsLoggingIn(false)}>
             Create or Reset Password
           </Button>
@@ -87,11 +92,11 @@ export const LoginPassword = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button onClick={handlePasswordCreation}>Save Password</Button>
-              <Button onClick={() => setIsForgotPassword(true)}>
+              <Button onClick={handlePasswordCreation} className='w-full'>Save Password</Button>
+              <Button onClick={() => setIsForgotPassword(true)} className='w-full'>
                 Forgot Password?
               </Button>
-              <Button onClick={() => setIsLoggingIn(true)}>
+              <Button onClick={() => setIsLoggingIn(true)} className='w-full'>
                 Back to Login
               </Button>
             </>
@@ -118,8 +123,8 @@ export const LoginPassword = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button onClick={handlePasswordReset}>Reset Password</Button>
-              <Button onClick={() => setIsForgotPassword(false)}>Back</Button>
+              <Button onClick={handlePasswordReset} className='w-full'>Reset Password</Button>
+              <Button onClick={() => setIsForgotPassword(false)} className='w-full'>Back</Button>
             </>
           )}
         </>

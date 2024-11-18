@@ -23,10 +23,10 @@ function App() {
     Content = <SeedPhrase />;
   } else {
     Content = (
-      <>
+      <div className="flex gap-5">
         <SolanaWallet />
         <EthWallet />
-      </>
+      </div>
     );
   }
 
