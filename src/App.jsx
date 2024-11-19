@@ -8,6 +8,7 @@ import { EthWallet } from "./components/EthWallet";
 import { Footer } from "./components/Footer";
 import { Toaster } from "./components/ui/sonner";
 import { YourSecretPhrase } from "./components/YourSecretPhrase";
+import { Separator } from "./components/ui/separator";
 
 function App() {
   const { isLoggedIn, mnemonic, loadFromLocalStorage } = useAuthStore();
@@ -24,10 +25,13 @@ function App() {
     Content = <SeedPhrase />;
   } else {
     Content = (
-      <div className="flex gap-5">
+      <div className="flex flex-col gap-5">
         <YourSecretPhrase />
-        <SolanaWallet />
-        <EthWallet />
+        <Separator />
+        <div className="grid grid-cols-2 gap-5 mb-16">
+          <SolanaWallet mnemonic={mnemonic} />
+          <EthWallet mnemonic={mnemonic} />
+        </div>
       </div>
     );
   }
@@ -36,9 +40,7 @@ function App() {
     <div className="flex flex-col h-screen">
       <Toaster />
       <Header />
-      <main className="flex-1 flex flex-col items-center justify-center mt-20 mb-20">
-        {Content}
-      </main>
+      <main className="flex-1 flex flex-col m-20">{Content}</main>
       <Footer />
     </div>
   );

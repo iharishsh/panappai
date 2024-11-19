@@ -12,7 +12,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { Copy } from "lucide-react";
+import { Copy, LockKeyhole, LockKeyholeOpen } from "lucide-react";
 
 export const YourSecretPhrase = () => {
   const [mnemonic, setMnemonic] = useState(Array(12).fill(""));
@@ -37,12 +37,12 @@ export const YourSecretPhrase = () => {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline">Your Secret Phrase</Button>
+        <Button variant="outline" className='shadow-md' ><LockKeyhole/> Your Secret Phrase</Button>
       </DrawerTrigger>
       <DrawerContent onClick={handleCopySeedPhrase}>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>Secret Phrase</DrawerTitle>
+            <DrawerTitle className='flex items-center gap-2'><LockKeyholeOpen /> Secret Phrase</DrawerTitle>
             <DrawerDescription>
               <span className="flex gap-3 items-center justify-center cursor-pointer text-sm p-5">
                 <Copy size={20} />
