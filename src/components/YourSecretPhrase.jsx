@@ -44,13 +44,13 @@ export const YourSecretPhrase = () => {
           <DrawerHeader>
             <DrawerTitle>Secret Phrase</DrawerTitle>
             <DrawerDescription>
-              <div className="flex gap-3 items-center justify-center cursor-pointer text-sm p-5">
+              <span className="flex gap-3 items-center justify-center cursor-pointer text-sm p-5">
                 <Copy size={20} />
-                <div>
+                <span>
                   Click Anywhere To Copy. <br />
                   Don't Share to anyone!
-                </div>
-              </div>
+                </span>
+              </span>
             </DrawerDescription>
           </DrawerHeader>
           <div className="grid grid-cols-3 gap-2">
