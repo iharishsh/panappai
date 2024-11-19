@@ -1,11 +1,14 @@
-import { Moon, Sun, WalletMinimal } from "lucide-react";
+import { Moon, Star, Sun, WalletMinimal } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Switch } from "./ui/switch";
 import { Badge } from "./ui/badge";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 
 export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(
-    () => window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+    () =>
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
   );
 
   useEffect(() => {
@@ -20,9 +23,18 @@ export const Header = () => {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-black border-b-2 p-3 flex justify-between items-center">
       <div className="flex gap-3 text-xl font-semibold items-center">
-        <WalletMinimal />
-        Panappai
-        <Badge variant="outline" className="font-extrabold">v1.1</Badge>
+      <WalletMinimal />
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>Panappai</TooltipTrigger>
+            <TooltipContent>
+              <a href="https://github.com/iharishsh/panappai" target="_blank" className="flex items-center justify-center gap-3"><Star size={20} color="yellow" fill="#e3b341" /> Star on Github</a>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <Badge variant="outline" className="font-extrabold">
+          v1.1
+        </Badge>
       </div>
       <div className="flex gap-3 items-center">
         <Sun className={isDarkMode ? "text-gray-500" : "text-yellow-500"} />
