@@ -7,6 +7,7 @@ import { SolanaWallet } from "./components/SolanaWallet";
 import { EthWallet } from "./components/EthWallet";
 import { Footer } from "./components/Footer";
 import { Toaster } from "./components/ui/sonner";
+import { YourSecretPhrase } from "./components/YourSecretPhrase";
 
 function App() {
   const { isLoggedIn, mnemonic, loadFromLocalStorage } = useAuthStore();
@@ -24,6 +25,7 @@ function App() {
   } else {
     Content = (
       <div className="flex gap-5">
+        <YourSecretPhrase />
         <SolanaWallet />
         <EthWallet />
       </div>
