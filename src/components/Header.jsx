@@ -22,7 +22,7 @@ export const Header = () => {
       <div className="flex gap-3 text-xl font-semibold items-center">
         <WalletMinimal />
         Panappai
-        <Badge variant="outline" className="font-extrabold">v1</Badge>
+        <Badge variant="outline" className="font-extrabold">v1.1</Badge>
       </div>
       <div className="flex gap-3 items-center">
         <Sun className={isDarkMode ? "text-gray-500" : "text-yellow-500"} />

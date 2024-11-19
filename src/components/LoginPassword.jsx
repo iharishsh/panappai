@@ -3,6 +3,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
+import CryptoJS from "crypto-js";
 
 export const LoginPassword = () => {
   const {
@@ -17,7 +18,8 @@ export const LoginPassword = () => {
   const [isLoggingIn, setIsLoggingIn] = useState(true);
 
   const handleLogin = () => {
-    if (password === storedPassword) {
+    const hashedPassword = CryptoJS.SHA256(password).toString();
+    if (hashedPassword === storedPassword) {
       toast("Logged in successfully!");
     } else {
       toast("Invalid password!");
@@ -33,32 +35,28 @@ export const LoginPassword = () => {
     }
   };
 
-const handlePasswordReset = () => {
-  if (!password) {
-    toast("Enter a new password.");
-    return;
-  }
+  const handlePasswordReset = () => {
+    if (!password) {
+      toast("Enter a new password.");
+      return;
+    }
 
-  if (mnemonic.join(" ") === storedMnemonic) {
-    resetPassword(password);
-    toast("Password reset successfully!");
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000); // 1-second delay
-  } else {
-    toast("Mnemonic does not match!");
-  }
-};
-
-  
+    if (mnemonic.join(" ") === storedMnemonic) {
+      resetPassword(password);
+      toast("Password reset successfully!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } else {
+      toast("Mnemonic does not match!");
+    }
+  };
 
   const handleMnemonicChange = (value, index) => {
     const updatedMnemonic = [...mnemonic];
     updatedMnemonic[index] = value;
     setMnemonic(updatedMnemonic);
 
-    // If pasting a full mnemonic, split and populate all fields
     if (index === 0 && (value.includes(" ") || value.includes(","))) {
       const words = value.split(/[\s,]+/).slice(0, 12);
       setMnemonic(words.concat(Array(12 - words.length).fill("")));
@@ -76,7 +74,9 @@ const handlePasswordReset = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleLogin} className='w-full' >Login</Button>
+          <Button onClick={handleLogin} className="w-full">
+            Login
+          </Button>
           <Button onClick={() => setIsLoggingIn(false)}>
             Create or Reset Password
           </Button>
@@ -92,11 +92,13 @@ const handlePasswordReset = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button onClick={handlePasswordCreation} className='w-full'>Save Password</Button>
-              <Button onClick={() => setIsForgotPassword(true)} className='w-full'>
+              <Button onClick={handlePasswordCreation} className="w-full">
+                Save Password
+              </Button>
+              <Button onClick={() => setIsForgotPassword(true)} className="w-full">
                 Forgot Password?
               </Button>
-              <Button onClick={() => setIsLoggingIn(true)} className='w-full'>
+              <Button onClick={() => setIsLoggingIn(true)} className="w-full">
                 Back to Login
               </Button>
             </>
@@ -111,9 +113,7 @@ const handlePasswordReset = () => {
                     type="text"
                     placeholder={`Word ${index + 1}`}
                     value={mnemonic[index]}
-                    onChange={(e) =>
-                      handleMnemonicChange(e.target.value, index)
-                    }
+                    onChange={(e) => handleMnemonicChange(e.target.value, index)}
                   />
                 ))}
               </div>
@@ -123,8 +123,12 @@ const handlePasswordReset = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button onClick={handlePasswordReset} className='w-full'>Reset Password</Button>
-              <Button onClick={() => setIsForgotPassword(false)} className='w-full'>Back</Button>
+              <Button onClick={handlePasswordReset} className="w-full">
+                Reset Password
+              </Button>
+              <Button onClick={() => setIsForgotPassword(false)} className="w-full">
+                Back
+              </Button>
             </>
           )}
         </>
