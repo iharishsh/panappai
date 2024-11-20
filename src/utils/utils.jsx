@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useAuthStore } from "@/store/useAuthStore";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -30,4 +31,22 @@ export const handleCopy = (text) => {
   } else {
     toast("Clipboard is not available in your environment.");
   }
+};
+
+export const handleDelete = (type, index) => {
+  return new Promise((resolve) => {
+    const wallets = JSON.parse(localStorage.getItem("wallets")) || {
+      solana: [],
+      eth: [],
+    };
+    if (wallets[type]) {
+      wallets[type].splice(index, 1);
+      localStorage.setItem("wallets", JSON.stringify(wallets));
+    }
+    // Notify Zustand store to update its state
+    const removeWallet = useAuthStore.getState().removeWallet;
+    removeWallet(type, index);
+
+    resolve();
+  });
 };

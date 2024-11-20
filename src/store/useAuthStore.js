@@ -20,6 +20,14 @@ export const useAuthStore = create((set) => ({
       return { wallets: updatedWallets };
     });
   },
+  removeWallet: (type, index) => {
+    set((state) => {
+      const updatedWallets = { ...state.wallets };
+      updatedWallets[type] = updatedWallets[type].filter((_, i) => i !== index);
+      localStorage.setItem("wallets", JSON.stringify(updatedWallets));
+      return { wallets: updatedWallets };
+    });
+  },
   loadFromLocalStorage: () => {
     const password = localStorage.getItem("password");
     const mnemonic = localStorage.getItem("mnemonic");
