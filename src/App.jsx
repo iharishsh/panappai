@@ -40,7 +40,7 @@ function App() {
     <div className="flex flex-col h-screen">
       <Toaster />
       <Header />
-      <main className="flex-1 flex flex-col m-20">{Content}</main>
+      <main className="flex-1 flex items-center justify-center p-5">{Content}</main>
       <Footer />
     </div>
   );

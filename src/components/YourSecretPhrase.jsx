@@ -37,7 +37,7 @@ export const YourSecretPhrase = () => {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline" className='shadow-md' ><LockKeyhole/> Your Secret Phrase</Button>
+        <Button variant="outline" className='shadow-md mt-20' ><LockKeyhole/> Your Secret Phrase</Button>
       </DrawerTrigger>
       <DrawerContent onClick={handleCopySeedPhrase}>
         <div className="mx-auto w-full max-w-sm">

@@ -40,23 +40,24 @@ export const SolanaWallet = ({ mnemonic }) => {
 
   const clearSolWallets = async () => {
     const solWalletsLength = wallets.solana.length;
-  
+
     for (let i = solWalletsLength - 1; i >= 0; i--) {
       await handleDelete("solana", i);
     }
-  
+
     loadFromLocalStorage();
     toast("All Solana wallets cleared successfully!");
   };
-  
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap gap-3 items-center justify-between">
         <Button onClick={handleAddWallet}>Add SOL Wallet</Button>
-        <DeleteAlert onConfirm={clearSolWallets}>
-          <Button variant="destructive">Clear SOL Wallets</Button>
-        </DeleteAlert>
+        {wallets.solana.length > 0 ? (
+          <DeleteAlert onConfirm={clearSolWallets}>
+            <Button variant="destructive">Clear SOL Wallets</Button>
+          </DeleteAlert>
+        ) : null}
       </div>
       <div className="flex flex-col gap-4 mt-4">
         {wallets.solana.map((wallet, index) => (

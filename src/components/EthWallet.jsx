@@ -39,23 +39,24 @@ export const EthWallet = ({ mnemonic }) => {
 
   const clearEthWallets = async () => {
     const ethWalletsLength = wallets.eth.length;
-  
+
     for (let i = ethWalletsLength - 1; i >= 0; i--) {
       await handleDelete("eth", i);
     }
-  
+
     loadFromLocalStorage();
     toast("All Ethereum wallets cleared successfully!");
   };
-  
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap gap-3 items-center justify-between">
         <Button onClick={handleAddWallet}>Add ETH Wallet</Button>
-        <DeleteAlert onConfirm={clearEthWallets}>
-          <Button variant="destructive">Clear ETH Wallets</Button>
-        </DeleteAlert>
+        {wallets.eth.length > 0 ? (
+          <DeleteAlert onConfirm={clearEthWallets}>
+            <Button variant="destructive">Clear ETH Wallets</Button>
+          </DeleteAlert>
+        ) : null}
       </div>
       <div className="flex flex-col gap-4 mt-4">
         {wallets.eth.map((wallet, index) => (
