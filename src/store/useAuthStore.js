@@ -3,6 +3,7 @@ import CryptoJS from "crypto-js";
 
 export const useAuthStore = create((set) => ({
   isLoggedIn: false,
+  isLoggedOut: false,
   password: null,
   mnemonic: null,
   wallets: { solana: [], eth: [] },
@@ -34,4 +35,7 @@ export const useAuthStore = create((set) => ({
     const wallets = JSON.parse(localStorage.getItem("wallets")) || { solana: [], eth: [] };
     set({ password, mnemonic, isLoggedIn: !!password, wallets });
   },
+  logout: () => {
+    set({ isLoggedIn: false });
+  }
 }));

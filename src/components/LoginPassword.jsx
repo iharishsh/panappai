@@ -11,6 +11,7 @@ export const LoginPassword = () => {
     setPasswordAndMnemonic,
     mnemonic: storedMnemonic,
     resetPassword,
+    loadFromLocalStorage
   } = useAuthStore();
   const [password, setPassword] = useState("");
   const [mnemonic, setMnemonic] = useState(Array(12).fill(""));
@@ -21,6 +22,7 @@ export const LoginPassword = () => {
     const hashedPassword = CryptoJS.SHA256(password).toString();
     if (hashedPassword === storedPassword) {
       toast("Logged in successfully!");
+      loadFromLocalStorage();
     } else {
       toast("Invalid password!");
     }
