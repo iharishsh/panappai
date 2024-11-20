@@ -33,7 +33,7 @@ export const Header = () => {
           </Tooltip>
         </TooltipProvider>
         <Badge variant="outline" className="font-extrabold">
-          v1.1
+          v1.2
         </Badge>
       </div>
       <div className="flex gap-3 items-center">

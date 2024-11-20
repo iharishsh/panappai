@@ -44,7 +44,7 @@ export const SeedPhrase = () => {
               <Input key={index} type="text" value={word} readOnly className="text-center cursor-pointer" />
             ))}
           </div>
-          <div onClick={handleCopySeedPhrase} className="flex gap-3 items-center justify-start cursor-pointer text-sm p-5">
+          <div className="flex gap-3 items-center justify-start cursor-pointer text-sm p-5">
           <Copy size={20} />
           Click Anywhere To Copy
           </div>

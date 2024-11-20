@@ -6,7 +6,7 @@ import { Keypair } from "@solana/web3.js";
 import nacl from "tweetnacl";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { RevealableText } from "@/utils/utils";
+import { handleCopy, RevealableText } from "@/utils/utils";
 
 export const SolanaWallet = ({ mnemonic }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,7 +40,7 @@ export const SolanaWallet = ({ mnemonic }) => {
             <CardContent>
             <div className="flex flex-col items-start gap-2 pb-5">
                 <strong>Public Key:</strong>{" "}
-                <span className="inline-block max-w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                <span className="inline-block max-w-full overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer" onClick={() => handleCopy(wallet.publicKey)}>
                   {wallet.publicKey}
                 </span>
               </div>
