@@ -13,6 +13,11 @@ export const useAuthStore = create((set) => ({
     localStorage.setItem("mnemonic", mnemonic);
     set({ password: encryptedPassword, mnemonic, isLoggedIn: true });
   },
+  resetPassword: (password) => {
+    const encryptedPassword = CryptoJS.SHA256(password).toString();
+    localStorage.setItem("password", encryptedPassword);
+    set({ password: encryptedPassword });
+  },
   addWallet: (type, walletData) => {
     set((state) => {
       const updatedWallets = { ...state.wallets };
