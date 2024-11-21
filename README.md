@@ -1,5 +1,6 @@
 # Web3 Panappai (Wallet)
-
+ <img src="https://github.com/iharishsh/panappai/blob/main/public/panappaicv.png" alt="Project Banner">
+ 
 ## Overview
 Panappai is a React-based application that allows users to generate and manage Solana/ETH wallets using a mnemonic phrase. The app features functionality to add new wallets, view wallet details, and delete individual or all wallets. It provides a user-friendly interface for securely managing crypto wallets.
 
